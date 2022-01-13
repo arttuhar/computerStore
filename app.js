@@ -9,12 +9,14 @@ const laptopTitle = document.getElementById("laptopTitle");
 const laptopDescription = document.getElementById("laptopDescription");
 const laptopPrice = document.getElementById("laptopPrice");
 const buyButton = document.getElementById("buyButton");
+const laptopImage = document.getElementById("laptopImage");
 
 let bankTotal = 0;
 let payTotal = 0;
 let laptops = [];
+let baseUrl = "https://noroff-komputer-store-api.herokuapp.com/";
 
-fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
+fetch(baseUrl + "computers")
 	.then(response => response.json())
 	.then(data => (laptops = data))
 	.then(laptops => addAllItemsToMenu(laptops));
@@ -22,6 +24,7 @@ fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
 const addAllItemsToMenu = laptops => {
 	laptops.forEach(item => addSingleItemToMenu(item));
 	featuresList.innerText = laptops[0].specs.join("\r\n");
+	laptopImage.src = baseUrl + laptops[0].image;
 	laptopTitle.innerText = laptops[0].title;
 	laptopDescription.innerText = laptops[0].description;
 	laptopPrice.innerText = laptops[0].price + " €";
@@ -37,6 +40,7 @@ const addSingleItemToMenu = laptop => {
 const handleChange = e => {
 	const selectedItem = laptops[e.target.selectedIndex];
 	featuresList.innerText = selectedItem.specs.join("\r\n");
+	laptopImage.src = baseUrl + selectedItem.image;
 	laptopTitle.innerText = selectedItem.title;
 	laptopDescription.innerText = selectedItem.description;
 	laptopPrice.innerText = selectedItem.price + " €";
