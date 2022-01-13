@@ -16,6 +16,9 @@ let payTotal = 0;
 let laptops = [];
 let baseUrl = "https://noroff-komputer-store-api.herokuapp.com/";
 
+bankBalance.innerText = bankTotal;
+payBalance.innerText = payTotal;
+
 fetch(baseUrl + "computers")
 	.then(response => response.json())
 	.then(data => (laptops = data))
@@ -46,4 +49,18 @@ const handleChange = e => {
 	laptopPrice.innerText = selectedItem.price + " €";
 };
 
+const handleDoWork = () => {
+	payTotal = parseInt(payTotal + 100);
+	payBalance.innerText = payTotal;
+};
+
+const handleBankMoney = () => {
+	bankTotal = parseInt(bankTotal + payTotal);
+	payTotal = 0;
+	payBalance.innerText = 0;
+	bankBalance.innerText = bankTotal;
+};
+
 laptopsMenu.addEventListener("change", handleChange);
+workButton.addEventListener("click", handleDoWork);
+bankButton.addEventListener("click", handleBankMoney);
