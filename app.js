@@ -4,6 +4,7 @@ const payBalance = document.getElementById("payBalance");
 const bankButton = document.getElementById("bankButton");
 const workButton = document.getElementById("workButton");
 const laptopsMenu = document.getElementById("laptopsMenu");
+const featuresList = document.getElementById("featuresList");
 
 let bankTotal = 0;
 let payTotal = 0;
@@ -16,6 +17,7 @@ fetch("https://noroff-komputer-store-api.herokuapp.com/computers")
 
 const addAllItemsToMenu = laptops => {
 	laptops.forEach(item => addSingleItemToMenu(item));
+	featuresList.innerText = laptops[0].specs.join("\r\n");
 };
 
 const addSingleItemToMenu = laptop => {
@@ -24,3 +26,10 @@ const addSingleItemToMenu = laptop => {
 	menuItem.appendChild(document.createTextNode(laptop.title));
 	laptopsMenu.appendChild(menuItem);
 };
+
+const handleChange = e => {
+	const selectedItem = laptops[e.target.selectedIndex];
+	featuresList.innerText = selectedItem.specs.join("\r\n");
+};
+
+laptopsMenu.addEventListener("change", handleChange);
