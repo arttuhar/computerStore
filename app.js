@@ -61,6 +61,18 @@ const handleBankMoney = () => {
 	bankBalance.innerText = bankTotal;
 };
 
+const handleBuyLaptop = () => {
+	const selectedItem = laptops[laptopsMenu.selectedIndex];
+
+	if (bankTotal >= selectedItem.price) {
+		bankTotal = bankTotal - selectedItem.price;
+		bankBalance.innerText = bankTotal;
+	} else {
+		console.log("Not enough money for new laptop");
+	}
+};
+
 laptopsMenu.addEventListener("change", handleChange);
 workButton.addEventListener("click", handleDoWork);
 bankButton.addEventListener("click", handleBankMoney);
+buyButton.addEventListener("click", handleBuyLaptop);
