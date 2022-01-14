@@ -56,11 +56,11 @@ const handleChange = e => {
 
 function checkLoan() {
 	if (loanTotal === 0) {
-		loanContainer.style.visibility = "hidden";
-		payLoanButton.style.visibility = "hidden";
+		loanContainer.style.display = "none";
+		payLoanButton.style.display = "none";
 	} else {
-		loanContainer.style.visibility = "visible";
-		payLoanButton.style.visibility = "visible";
+		loanContainer.style.display = "block";
+		payLoanButton.style.display = "block";
 	}
 }
 
