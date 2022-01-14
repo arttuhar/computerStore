@@ -5,42 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel='stylesheet' href='style.css'>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <title>Computer Store</title>
 </head>
 <body>
     <div class='container'>
-        <div class='bank'>
-            <h2>Bank</h2>
-            <p>Balance</p>
-            <p id='bankBalance'></p>
-            <div id='loanContainer'>
-                <p>Loan</p>
-                <p id='loanBalance'></p>
+            <div class='content bank'>
+                <h2>Bank</h2>
+                <div class='balance'>
+                    <p>Balance</p>
+                    <p id='bankBalance' class='bankBalance'></p>
+                </div>
+                <div id='loan'>
+                    <p>Loan</p>
+                    <p id='loanBalance' class='loanBalance'></p>
+                </div>
+                <div class='buttons'>
+                    <button id='getLoanButton' class='button'>Get loan</button>
+                    <button id='payLoanButton' class='button'>Pay loan</button>
+                </div>
             </div>
-            <button id='getLoanButton'>Get loan</button>
-            <button id='payLoanButton'>Pay loan</button>
-        </div>
-        <div class='work'>
+        <div class='content work'>
             <h2>Work</h2>
-            <p>Pay</p>
-            <p id='payBalance'></p>
-            <button id='bankButton'>Bank</button>
-            <button id='workButton'>Work</button>
+            <div class='pay'>
+                <p>Pay</p>
+                <p id='payBalance' class='payBalance'></p>
+            </div>
+            
+            <div class='buttons'>
+                <button id='bankButton' class='button'>Bank</button>
+                <button id='workButton' class='button'>Work</button>
+            </div>
+            
         </div>
-        <div class='laptops'>
+        <div class='content laptops'>
             <h2>Laptops</h2>
             <select id='laptopsMenu'>
 
             </select>
             <p>Features</p>
-            <p id='featuresList'></p>
+            <p id='featuresList' class='featuresList'></p>
         </div>
-        <div class='details'>
+        <div class=' content details'>
             <img id='laptopImage' width='100' height='auto'>
             <h1 id='laptopTitle'></h1>
-            <p id='laptopDescription'></p>
+            <p id='laptopDescription' class='laptopDescription'></p>
             <h2 id='laptopPrice'></h2>
-            <button id='buyButton'>Buy now</button>
+            <div class='buttons'>
+                <button id='buyButton' class='button'>Buy now</button>
+            </div>
         </div>
     </div>
     <script src='app.js'></script>

@@ -1,5 +1,5 @@
 const bankBalance = document.getElementById("bankBalance");
-const loanContainer = document.getElementById("loanContainer");
+const loanContainer = document.getElementById("loan");
 const loanBalance = document.getElementById("loanBalance");
 const getLoanButton = document.getElementById("getLoanButton");
 const payLoanButton = document.getElementById("payLoanButton");
@@ -60,8 +60,8 @@ function checkLoan() {
 		loanContainer.style.display = "none";
 		payLoanButton.style.display = "none";
 	} else {
-		loanContainer.style.display = "block";
-		payLoanButton.style.display = "block";
+		loanContainer.style.display = "flex";
+		payLoanButton.style.display = "inline-block";
 	}
 }
 
