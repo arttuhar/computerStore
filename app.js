@@ -93,10 +93,20 @@ const handleDoWork = () => {
 };
 
 const handleBankMoney = () => {
-	bankTotal = parseInt(bankTotal + payTotal);
-	payTotal = 0;
-	payBalance.innerText = 0;
-	bankBalance.innerText = bankTotal;
+	if (loanTotal > 0) {
+		bankTotal = parseInt(bankTotal + payTotal * (90 / 100));
+		loanTotal = parseInt(loanTotal - payTotal * (10 / 100));
+		payTotal = 0;
+		payBalance.innerText = 0;
+		bankBalance.innerText = bankTotal;
+		loanBalance.innerText = loanTotal;
+	} else {
+		bankTotal = parseInt(bankTotal + payTotal);
+		payTotal = 0;
+		payBalance.innerText = 0;
+		bankBalance.innerText = bankTotal;
+	}
+	checkLoan();
 };
 
 const handleBuyLaptop = () => {
