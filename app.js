@@ -1,4 +1,5 @@
 const bankBalance = document.getElementById("bankBalance");
+const loanContainer = document.getElementById("loanContainer");
 const loanBalance = document.getElementById("loanBalance");
 const getLoanButton = document.getElementById("getLoanButton");
 const payLoanButton = document.getElementById("payLoanButton");
@@ -55,8 +56,10 @@ const handleChange = e => {
 
 function checkLoan() {
 	if (loanTotal === 0) {
+		loanContainer.style.visibility = "hidden";
 		payLoanButton.style.visibility = "hidden";
 	} else {
+		loanContainer.style.visibility = "visible";
 		payLoanButton.style.visibility = "visible";
 	}
 }
