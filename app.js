@@ -18,6 +18,7 @@ let bankTotal = 0;
 let loanTotal = 0;
 let payTotal = 0;
 let laptops = [];
+let boughtLaptop = true;
 let baseUrl = "https://noroff-komputer-store-api.herokuapp.com/";
 
 bankBalance.innerText = bankTotal;
@@ -55,7 +56,7 @@ const handleChange = e => {
 };
 
 function checkLoan() {
-	if (loanTotal === 0) {
+	if (loanTotal <= 0) {
 		loanContainer.style.display = "none";
 		payLoanButton.style.display = "none";
 	} else {
@@ -68,11 +69,17 @@ checkLoan();
 
 const handleGetLoan = () => {
 	const loanAmount = Number(window.prompt("Amount?", ""));
-	if (loanAmount <= bankTotal * (200 / 100) && loanTotal === 0) {
+	if (
+		loanAmount <= bankTotal * (200 / 100) &&
+		loanTotal <= 0 &&
+		boughtLaptop === true
+	) {
 		bankTotal = parseInt(bankTotal + loanAmount);
 		bankBalance.innerText = bankTotal;
 		loanTotal = parseInt(loanTotal + loanAmount);
 		loanBalance.innerText = loanTotal;
+		boughtLaptop = false;
+		alert("You got loan of " + loanAmount);
 	} else {
 		alert("There is not loan available for you right now");
 	}
@@ -111,10 +118,11 @@ const handleBankMoney = () => {
 
 const handleBuyLaptop = () => {
 	const selectedItem = laptops[laptopsMenu.selectedIndex];
-
 	if (bankTotal >= selectedItem.price) {
 		bankTotal = bankTotal - selectedItem.price;
 		bankBalance.innerText = bankTotal;
+		boughtLaptop = true;
+		alert("You just bought " + selectedItem.title);
 	} else {
 		alert("Not enough money for new laptop");
 	}
