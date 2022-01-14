@@ -1,4 +1,5 @@
 const bankBalance = document.getElementById("bankBalance");
+const loanBalance = document.getElementById("loanBalance");
 const loanButton = document.getElementById("loanButton");
 const payBalance = document.getElementById("payBalance");
 const bankButton = document.getElementById("bankButton");
@@ -12,11 +13,13 @@ const buyButton = document.getElementById("buyButton");
 const laptopImage = document.getElementById("laptopImage");
 
 let bankTotal = 0;
+let loanTotal = 0;
 let payTotal = 0;
 let laptops = [];
 let baseUrl = "https://noroff-komputer-store-api.herokuapp.com/";
 
 bankBalance.innerText = bankTotal;
+loanBalance.innerText = loanTotal;
 payBalance.innerText = payTotal;
 
 fetch(baseUrl + "computers")
