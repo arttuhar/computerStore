@@ -1,6 +1,7 @@
 const bankBalance = document.getElementById("bankBalance");
 const loanBalance = document.getElementById("loanBalance");
-const loanButton = document.getElementById("loanButton");
+const getLoanButton = document.getElementById("getLoanButton");
+const payLoanButton = document.getElementById("payLoanButton");
 const payBalance = document.getElementById("payBalance");
 const bankButton = document.getElementById("bankButton");
 const workButton = document.getElementById("workButton");
@@ -52,6 +53,16 @@ const handleChange = e => {
 	laptopPrice.innerText = selectedItem.price + " €";
 };
 
+function checkLoan() {
+	if (loanTotal === 0) {
+		payLoanButton.style.visibility = "hidden";
+	} else {
+		payLoanButton.style.visibility = "visible";
+	}
+}
+
+checkLoan();
+
 const handleGetLoan = () => {
 	const loanAmount = Number(window.prompt("Amount?", ""));
 	if (loanAmount <= bankTotal * (200 / 100) && loanTotal === 0) {
@@ -62,6 +73,15 @@ const handleGetLoan = () => {
 	} else {
 		alert("There is not loan available for you right now");
 	}
+	checkLoan();
+};
+
+const handlePayLoan = () => {
+	bankTotal = parseInt(bankTotal - loanTotal);
+	bankBalance.innerText = bankTotal;
+	loanTotal = 0;
+	loanBalance.innerText = loanTotal;
+	checkLoan();
 };
 
 const handleDoWork = () => {
@@ -88,7 +108,8 @@ const handleBuyLaptop = () => {
 };
 
 laptopsMenu.addEventListener("change", handleChange);
-loanButton.addEventListener("click", handleGetLoan);
+getLoanButton.addEventListener("click", handleGetLoan);
+payLoanButton.addEventListener("click", handlePayLoan);
 workButton.addEventListener("click", handleDoWork);
 bankButton.addEventListener("click", handleBankMoney);
 buyButton.addEventListener("click", handleBuyLaptop);
