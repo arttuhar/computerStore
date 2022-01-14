@@ -49,6 +49,18 @@ const handleChange = e => {
 	laptopPrice.innerText = selectedItem.price + " €";
 };
 
+const handleGetLoan = () => {
+	const loanAmount = Number(window.prompt("Amount?", ""));
+	if (loanAmount <= bankTotal * (200 / 100)) {
+		bankTotal = parseInt(bankTotal + loanAmount);
+		bankBalance.innerText = bankTotal;
+	} else {
+		alert(
+			"You cannot get a loan more than double of your current bank balance"
+		);
+	}
+};
+
 const handleDoWork = () => {
 	payTotal = parseInt(payTotal + 100);
 	payBalance.innerText = payTotal;
@@ -68,11 +80,12 @@ const handleBuyLaptop = () => {
 		bankTotal = bankTotal - selectedItem.price;
 		bankBalance.innerText = bankTotal;
 	} else {
-		console.log("Not enough money for new laptop");
+		alert("Not enough money for new laptop");
 	}
 };
 
 laptopsMenu.addEventListener("change", handleChange);
+loanButton.addEventListener("click", handleGetLoan);
 workButton.addEventListener("click", handleDoWork);
 bankButton.addEventListener("click", handleBankMoney);
 buyButton.addEventListener("click", handleBuyLaptop);
