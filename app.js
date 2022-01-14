@@ -54,13 +54,13 @@ const handleChange = e => {
 
 const handleGetLoan = () => {
 	const loanAmount = Number(window.prompt("Amount?", ""));
-	if (loanAmount <= bankTotal * (200 / 100)) {
+	if (loanAmount <= bankTotal * (200 / 100) && loanTotal === 0) {
 		bankTotal = parseInt(bankTotal + loanAmount);
 		bankBalance.innerText = bankTotal;
+		loanTotal = parseInt(loanTotal + loanAmount);
+		loanBalance.innerText = loanTotal;
 	} else {
-		alert(
-			"You cannot get a loan more than double of your current bank balance"
-		);
+		alert("There is not loan available for you right now");
 	}
 };
 
