@@ -29,7 +29,10 @@ payBalance.innerText = payTotal;
 fetch(baseUrl + "computers")
 	.then(response => response.json())
 	.then(data => (laptops = data))
-	.then(laptops => addAllItemsToMenu(laptops));
+	.then(laptops => addAllItemsToMenu(laptops))
+	.catch(error => {
+		console.log(error);
+	});
 
 // Add all laptops to menu
 const addAllItemsToMenu = laptops => {
