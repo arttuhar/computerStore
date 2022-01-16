@@ -89,19 +89,23 @@ const handleGetLoan = () => {
 		loanTotal = parseInt(loanTotal + loanAmount);
 		loanBalance.innerText = loanTotal;
 		boughtLaptop = false;
-		alert("You got loan of " + loanAmount);
 	} else {
 		alert("There is not loan available for you right now");
 	}
 	checkLoan();
 };
 
+// Check if user has enough money in bank
 // Pay entire loan, loan balance is reduced from bank balance
 const handlePayLoan = () => {
-	bankTotal = parseInt(bankTotal - loanTotal);
-	bankBalance.innerText = bankTotal;
-	loanTotal = 0;
-	loanBalance.innerText = loanTotal;
+	if (bankTotal >= loanTotal) {
+		bankTotal = parseInt(bankTotal - loanTotal);
+		bankBalance.innerText = bankTotal;
+		loanTotal = 0;
+		loanBalance.innerText = loanTotal;
+	} else {
+		alert("Not enough money in the bank to pay loan");
+	}
 	checkLoan();
 };
 
