@@ -1,5 +1,5 @@
 body {
-	font-family: "Roboto", sans-serif;
+	font-family: "Poppins", sans-serif;
 	color: #262626;
 }
 
@@ -65,9 +65,11 @@ body {
 	display: flex;
 	width: 100%;
 	justify-content: flex-end;
+	font-weight: 100;
 }
 
 .featuresList,
 .laptopDescription {
 	font-size: 14px;
+	font-weight: 200;
 }

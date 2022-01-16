@@ -25,11 +25,13 @@ bankBalance.innerText = bankTotal;
 loanBalance.innerText = loanTotal;
 payBalance.innerText = payTotal;
 
+// Get data from API
 fetch(baseUrl + "computers")
 	.then(response => response.json())
 	.then(data => (laptops = data))
 	.then(laptops => addAllItemsToMenu(laptops));
 
+// Add all laptops to menu
 const addAllItemsToMenu = laptops => {
 	laptops.forEach(item => addSingleItemToMenu(item));
 	featuresList.innerText = laptops[0].specs.join("\r\n");
@@ -39,6 +41,8 @@ const addAllItemsToMenu = laptops => {
 	laptopPrice.innerText = laptops[0].price + " €";
 };
 
+// Create option elements inside of select element
+// Add individual laptop to select menu
 const addSingleItemToMenu = laptop => {
 	const menuItem = document.createElement("option");
 	menuItem.value = laptop.id;
@@ -46,6 +50,7 @@ const addSingleItemToMenu = laptop => {
 	laptopsMenu.appendChild(menuItem);
 };
 
+// Change data in features and details element depending which laptop is selected
 const handleChange = e => {
 	const selectedItem = laptops[e.target.selectedIndex];
 	featuresList.innerText = selectedItem.specs.join("\r\n");
@@ -55,6 +60,8 @@ const handleChange = e => {
 	laptopPrice.innerText = selectedItem.price + " €";
 };
 
+// Check if user has active loan
+// Show loan amount and pay loan button
 function checkLoan() {
 	if (loanTotal <= 0) {
 		loanContainer.style.display = "none";
@@ -67,6 +74,9 @@ function checkLoan() {
 
 checkLoan();
 
+// Ask amount of loan
+// Move loan to bank balance if asked loan is two times or less user's bank balance,
+// AND user has no active loan AND user has bought new laptop before asking new loan
 const handleGetLoan = () => {
 	const loanAmount = Number(window.prompt("Amount?", ""));
 	if (
@@ -86,6 +96,7 @@ const handleGetLoan = () => {
 	checkLoan();
 };
 
+// Pay entire loan, loan balance is reduced from bank balance
 const handlePayLoan = () => {
 	bankTotal = parseInt(bankTotal - loanTotal);
 	bankBalance.innerText = bankTotal;
@@ -94,11 +105,15 @@ const handlePayLoan = () => {
 	checkLoan();
 };
 
+// Add 100 to pay balance
 const handleDoWork = () => {
 	payTotal = parseInt(payTotal + 100);
 	payBalance.innerText = payTotal;
 };
 
+// Transfer pay balance to bank balance
+// If user has active loan, 10% of pay balance is reduced from loan balance
+// and excess 90% of pay balance is added to bank balance
 const handleBankMoney = () => {
 	if (loanTotal > 0) {
 		bankTotal = parseInt(bankTotal + payTotal * (90 / 100));
@@ -116,6 +131,7 @@ const handleBankMoney = () => {
 	checkLoan();
 };
 
+// Buy new laptop if user has enough balance in bank
 const handleBuyLaptop = () => {
 	const selectedItem = laptops[laptopsMenu.selectedIndex];
 	if (bankTotal >= selectedItem.price) {
@@ -128,6 +144,7 @@ const handleBuyLaptop = () => {
 	}
 };
 
+// Event listeners
 laptopsMenu.addEventListener("change", handleChange);
 getLoanButton.addEventListener("click", handleGetLoan);
 payLoanButton.addEventListener("click", handlePayLoan);
