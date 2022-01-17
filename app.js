@@ -65,7 +65,7 @@ const handleChange = e => {
 
 // Check if user has active loan
 // Show loan amount and pay loan button
-function checkLoan() {
+const checkLoan = () => {
 	if (loanTotal <= 0) {
 		loanContainer.style.display = "none";
 		payLoanButton.style.display = "none";
@@ -73,7 +73,7 @@ function checkLoan() {
 		loanContainer.style.display = "flex";
 		payLoanButton.style.display = "inline-block";
 	}
-}
+};
 
 checkLoan();
 
