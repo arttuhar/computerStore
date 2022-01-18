@@ -3,6 +3,7 @@
 ## Table of contents
 
 - [General info](#general-info)
+- [Installation and usage](#installation-and-usage)
 - [Technologies](#technologies)
 - [Demo](#demo)
 
@@ -19,6 +20,16 @@ Select menu has six different laptop options. Below the menu user can inspect fe
 
 **Laptop overview**
 Title, short description and price of selected laptop is shown on this tab. User has option to buy new laptop by clicking Buy now button if user has enough money in the bank. If user has no enough money in the bank to buy selected laptop, alert will be shown.
+
+## Installation and usage
+
+Clone down this repository:
+
+```sh
+git clone https://github.com/arttuhar/computerStore.git
+```
+
+After cloning repository, _Open with [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer)_ by right clicking the index.html.
 
 ## Technologies
 
